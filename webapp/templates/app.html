@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identify your Dog's breed</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'dropzone.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+    
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class ="row">
+        <div class="col-sm-12">
+            <h1><center>Identify your Dog's Breed</center><h1>
+        </div>
+        </div>
+        <br><br><br>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <form action="/file-upload" class="dropzone" id="dropzone">
+                        {%csrf_token%}
+                            <div class="dz-message needsclick">
+                                <img src="{% static 'upload.png' %}" width="50vw" height="50vw"><br>
+                                <span class="note needsclick">Drop files here or click to upload</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-3 mx-auto">
+                        <button id="submitBtn" type="button" class="btn btn-success">Classify</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <br><br><br>
+        <div class="row">
+            <div class="col-sm-2"></div>    
+            <div class="col-sm-8 error" id="error" >
+                <p><h3>Sorry, unable to classify the image. Please try with a different image.</h3></p>    
+            </div>
+
+            <div class="col-sm-4" id="resultHolder">           
+            <center><p><h4>Your Dog's Breed<h4><h3 id = "result"> </h3><p></center>
+        
+            </div>
+
+            <div class="col-sm-4" id="divClassTable">
+                <table id="classTable">
+                        <tr>
+                            <th>Breed</th>
+                            <th>Probability Score</th>
+                        </tr>
+                        <tr>
+                            <td id="label_0"></td>
+                            <td id="score_0"></td>
+                        </tr>
+                        <tr>
+                            <td id="label_1"></td>
+                            <td id="score_1"></td>
+                        </tr>
+                        <tr>
+                            <td id="label_2"></td>
+                            <td id="score_2"></td>
+                        </tr>
+                </table>
+            </div>
+            <div class="col-sm-2"></div>
+            
+        </div>
+
+    </div>
+
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="{% static 'dropzone.min.js' %}"></script>
+<script src="{% static 'app.js' %}"></script>
+</html>
